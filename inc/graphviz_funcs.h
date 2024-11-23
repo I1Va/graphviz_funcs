@@ -2,7 +2,8 @@
 #define GRAPHVIZ_FUNCS_H
 
 #include <string.h>
-
+#include <stdlib.h>
+#include <stdio.h>
 
 struct dot_code_pars_t {
     char *rankdir;
@@ -59,6 +60,6 @@ bool dot_code_t_ctor(dot_code_t *dot_code, dot_code_pars_t pars);
 void dot_code_t_dtor(dot_code_t *dot_code);
 size_t dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, char *label);
 bool dot_new_edge(dot_code_t *dot_code, size_t node1_idx, size_t node2_idx, dot_edge_pars_t pars, char *label);
-
+void dot_write_node(FILE *dot_code_file, dot_node_t *node);
 
 #endif // GRAPHVIZ_FUNCS_H

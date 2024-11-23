@@ -24,6 +24,29 @@ void dot_code_t_dtor(dot_code_t *dot_code) {
 
 }
 
+void dot_write_node(FILE *dot_code_file, dot_node_t *node) {
+    assert(node != NULL);
+    assert(dot_code_file != NULL);
+
+    fprintf(dot_code_file, "    NODE%p[", node);
+    if (node->pars.shape) {
+        fprintf(dot_code_file, "shape=\"%s\"", node->pars.shape);
+    }
+    if (node->pars.color) {
+        fprintf(dot_code_file, ",color=\"%s\"", node->pars.color);
+    }
+    if (node->pars.fillcolor) {
+        fprintf(dot_code_file, ",fillcolor=\"%s\"", node->pars.fillcolor);
+    }
+    if (node->pars.shape) {
+        fprintf(dot_code_file, ",shape=\"%s\"", node->pars.shape);
+    }
+    if (node->label) {
+        fprintf(dot_code_file, ",label=\"%s\"", node->label);
+    }
+    fprintf(dot_code_file, "]\n");
+}
+
 size_t dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, char *label) {
     if (dot_code->node_list_sz >= dot_code->node_list_cap) {
         debug("node_list overflow");
