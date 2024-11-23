@@ -5,7 +5,7 @@
 
 
 struct dot_code_pars_t {
-
+    char *rankdir;
 };
 
 struct dot_node_pars_t {
@@ -41,6 +41,7 @@ const size_t STR_STORAGE_CHUNK_SIZE = 128;
 
 const dot_node_pars_t DEFAULT_NODE_PARS = {"tab", "red", "black", "filled"};
 const dot_edge_pars_t DEFAULT_EDGE_PARS = {"cyan", 2};
+const dot_code_pars_t LIST_DOT_CODE_PARS = {"LR"};
 
 struct dot_code_t {
     dot_code_pars_t pars;
@@ -54,7 +55,7 @@ struct dot_code_t {
     size_t edge_list_sz;
 };
 
-bool dot_code_t_ctor(dot_code_t *dot_code);
+bool dot_code_t_ctor(dot_code_t *dot_code, dot_code_pars_t pars);
 void dot_code_t_dtor(dot_code_t *dot_code);
 size_t dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, char *label);
 bool dot_new_edge(dot_code_t *dot_code, size_t node1_idx, size_t node2_idx, dot_edge_pars_t pars, char *label);
