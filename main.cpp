@@ -9,6 +9,15 @@
 #include "general.h"
 #include "dot_log.h"
 
+
+const char DOT_DIR_PATH[] = "./logs/dot";
+const char DOT_FILE_NAME[] = "graph.dot";
+const char DOT_IMG_NAME[] = "gr_img.png";
+
+const dot_node_pars_t DEFAULT_NODE_PARS = {"Mrecord", "red", "black", "filled"};
+const dot_edge_pars_t DEFAULT_EDGE_PARS = {NULL, NULL, "cyan", 2};
+const dot_code_pars_t LIST_DOT_CODE_PARS = {"LR"};
+
 int main() {
     // test_mode_launch();
 

@@ -12,10 +12,6 @@ const size_t MAX_DOT_FILE_NAME_SZ = 128;
 const size_t MAX_DOT_IMG_NAME_SZ = 128;
 const size_t MAX_SYSTEM_COMMAND_SIZE = 128;
 
-const char DOT_DIR_PATH[] = "./logs/dot";
-const char DOT_FILE_NAME[] = "graph.dot";
-const char DOT_IMG_NAME[] = "gr_img.png";
-
 struct dot_code_pars_t {
     const char *rankdir;
 };
@@ -63,10 +59,6 @@ struct dot_code_t {
     size_t edge_list_cap = DOT_CODE_LIST_MAX_SZ;
     size_t edge_list_sz;
 };
-
-const dot_node_pars_t DEFAULT_NODE_PARS = {"Mrecord", "red", "black", "filled"};
-const dot_edge_pars_t DEFAULT_EDGE_PARS = {NULL, NULL, "cyan", 2};
-const dot_code_pars_t LIST_DOT_CODE_PARS = {"LR"};
 
 bool dot_dir_ctor(dot_dir_t *dot_dir, const char dot_dir_path[], const char dot_file_name[], const char dot_img_name[]);
 void dot_dir_dtor(dot_dir_t *dot_dir);
