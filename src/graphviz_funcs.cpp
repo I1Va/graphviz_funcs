@@ -61,8 +61,8 @@ void dot_write_node(FILE *dot_code_file, dot_node_t *node) {
     if (node->pars.fillcolor) {
         fprintf(dot_code_file, ",fillcolor=\"%s\"", node->pars.fillcolor);
     }
-    if (node->pars.shape) {
-        fprintf(dot_code_file, ",shape=\"%s\"", node->pars.shape);
+    if (node->pars.style) {
+        fprintf(dot_code_file, ",style=\"%s\"", node->pars.style);
     }
     if (node->label) {
         fprintf(dot_code_file, ",label=\"%s\"", node->label);
