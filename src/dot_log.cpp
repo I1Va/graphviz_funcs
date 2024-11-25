@@ -5,6 +5,7 @@
 
 #include "general.h"
 #include "graphviz_funcs.h"
+#include "dot_log.h"
 
 size_t get_max_str_len(size_t n, ...) {
     size_t max_str_len = 0;
@@ -20,13 +21,13 @@ size_t get_max_str_len(size_t n, ...) {
     return max_str_len;
 }
 
-void fprintf_str_block(FILE *stream, const size_t indent_sz, const size_t block_sz, char *string) {
+void fprintf_str_block(FILE *stream, const size_t indent_sz, const size_t block_sz, const char *string) {
     assert(string != NULL);
 
     int str_len = (int) strlen(string);
 
     if ((int) block_sz < str_len) {
-        debug("string crawls out of the block : string[%d] : '%s', block_sz : [%d]", str_len, string, block_sz);
+        debug("string crawls out of the block : string[%d] : '%s', block_sz : [%lu]", str_len, string, block_sz);
         str_len = (int) block_sz;
     }
     fprintf(stream, "%*.s", (int) indent_sz, "");

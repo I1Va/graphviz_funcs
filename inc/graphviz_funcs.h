@@ -5,45 +5,53 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+const size_t DOT_CODE_LIST_MAX_SZ = 128;
+const size_t STR_STORAGE_CHUNK_SIZE = 128;
+const size_t MAX_DOT_DIR_SZ = 128;
+const size_t MAX_DOT_FILE_NAME_SZ = 128;
+const size_t MAX_DOT_IMG_NAME_SZ = 128;
+const size_t MAX_SYSTEM_COMMAND_SIZE = 128;
+
+const char DOT_DIR_PATH[] = "./logs/dot";
+const char DOT_FILE_NAME[] = "graph.dot";
+const char DOT_IMG_NAME[] = "gr_img.png";
+
 struct dot_code_pars_t {
-    char *rankdir;
+    const char *rankdir;
 };
-
 struct dot_node_pars_t {
-    char *shape;
-    char *color;
-    char *fillcolor;
-    char *style;
+    const char *shape;
+    const char *color;
+    const char *fillcolor;
+    const char *style;
 };
-
-
 struct dot_node_t {
     dot_node_pars_t pars;
 
-    char *label;
+    const char *label;
 };
-
 struct dot_edge_pars_t {
-    char *color;
+    const char *start_suf;
+    const char *end_suf;
+
+    const char *color;
     size_t penwidth;
 };
-
 struct dot_edge_t {
     void *start;
     void *end;
 
     dot_edge_pars_t pars;
 
-    char *label;
+    const char *label;
 };
+struct dot_dir_t {
+    char dot_dir[MAX_DOT_DIR_SZ];
+    char dot_code_file_path[MAX_DOT_FILE_NAME_SZ];
+    char dot_img_path[MAX_DOT_IMG_NAME_SZ];
 
-const size_t DOT_CODE_LIST_MAX_SZ = 128;
-const size_t STR_STORAGE_CHUNK_SIZE = 128;
-
-const dot_node_pars_t DEFAULT_NODE_PARS = {"tab", "red", "black", "filled"};
-const dot_edge_pars_t DEFAULT_EDGE_PARS = {"cyan", 2};
-const dot_code_pars_t LIST_DOT_CODE_PARS = {"LR"};
-
+    FILE* dot_code_file;
+};
 struct dot_code_t {
     dot_code_pars_t pars;
 
@@ -56,10 +64,21 @@ struct dot_code_t {
     size_t edge_list_sz;
 };
 
+const dot_node_pars_t DEFAULT_NODE_PARS = {"Mrecord", "red", "black", "filled"};
+const dot_edge_pars_t DEFAULT_EDGE_PARS = {NULL, NULL, "cyan", 2};
+const dot_code_pars_t LIST_DOT_CODE_PARS = {"LR"};
+
+bool dot_dir_ctor(dot_dir_t *dot_dir, const char dot_dir_path[], const char dot_file_name[], const char dot_img_name[]);
+void dot_dir_dtor(dot_dir_t *dot_dir);
 bool dot_code_t_ctor(dot_code_t *dot_code, dot_code_pars_t pars);
 void dot_code_t_dtor(dot_code_t *dot_code);
-size_t dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, char *label);
-bool dot_new_edge(dot_code_t *dot_code, size_t node1_idx, size_t node2_idx, dot_edge_pars_t pars, char *label);
+size_t dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, const char *label);
+bool dot_new_edge(dot_code_t *dot_code, size_t node1_idx, size_t node2_idx, dot_edge_pars_t pars, const char *label);
 void dot_write_node(FILE *dot_code_file, dot_node_t *node);
+void dot_start_graph(FILE *dot_code_file, dot_code_pars_t *pars);
+void dot_end_graph(FILE *dot_code_file);
+void dot_draw_image(dot_dir_t *dot_dir);
+void dot_write_edge(FILE *dot_code_file, dot_edge_t *edge);
+void dot_code_render(dot_dir_t *dot_dir, dot_code_t *dot_code);
 
 #endif // GRAPHVIZ_FUNCS_H
