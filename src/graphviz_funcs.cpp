@@ -103,7 +103,6 @@ void dot_start_graph(FILE *dot_code_file, dot_code_pars_t *pars) {
 
 void dot_end_graph(FILE *dot_code_file) {
     fprintf(dot_code_file, "}");
-    fclose(dot_code_file);
 }
 
 void dot_draw_image(dot_dir_t *dot_dir) {
@@ -157,6 +156,7 @@ void dot_code_render(dot_dir_t *dot_dir, dot_code_t *dot_code) {
     for (size_t i = 0; i < dot_code->edge_list_sz; i++) {
         dot_write_edge(dot_dir->dot_code_file, &(dot_code->edge_list[i]));
     }
+    dot_end_graph(dot_dir->dot_code_file);
 
     dot_draw_image(dot_dir);
 }
