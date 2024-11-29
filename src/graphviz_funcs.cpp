@@ -103,6 +103,7 @@ void dot_start_graph(FILE *dot_code_file, dot_code_pars_t *pars) {
 
 void dot_end_graph(FILE *dot_code_file) {
     fprintf(dot_code_file, "}");
+    fclose(dot_code_file);
 }
 
 void dot_draw_image(dot_dir_t *dot_dir) {
