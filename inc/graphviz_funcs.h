@@ -64,8 +64,8 @@ bool dot_dir_ctor(dot_dir_t *dot_dir, const char dot_dir_path[], const char dot_
 void dot_dir_dtor(dot_dir_t *dot_dir);
 bool dot_code_t_ctor(dot_code_t *dot_code, dot_code_pars_t pars);
 void dot_code_t_dtor(dot_code_t *dot_code);
-size_t dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, const char *label);
-size_t dot_new_edge(dot_code_t *dot_code, size_t node1_idx, size_t node2_idx, dot_edge_pars_t pars, const char *label);
+int dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, const char *label);
+int dot_new_edge(dot_code_t *dot_code, size_t node1_idx, size_t node2_idx, dot_edge_pars_t pars, const char *label);
 void dot_write_node(FILE *dot_code_file, dot_node_t *node);
 void dot_start_graph(FILE *dot_code_file, dot_code_pars_t *pars);
 void dot_end_graph(FILE *dot_code_file);

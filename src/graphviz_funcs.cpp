@@ -70,26 +70,26 @@ void dot_write_node(FILE *dot_code_file, dot_node_t *node) {
     fprintf(dot_code_file, "]\n");
 }
 
-size_t dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, const char *label) {
+int dot_new_node(dot_code_t *dot_code, dot_node_pars_t pars, const char *label) {
     if (dot_code->node_list_sz >= dot_code->node_list_cap) {
         debug("node_list overflow");
-        return 0;
+        return -1;
     }
     dot_code->node_list[dot_code->node_list_sz++] = {pars, label};
-    return dot_code->node_list_sz - 1;
+    return (int) (dot_code->node_list_sz) - 1;
 }
 
-size_t dot_new_edge(dot_code_t *dot_code, size_t node1_idx, size_t node2_idx, dot_edge_pars_t pars, const char *label) {
+int dot_new_edge(dot_code_t *dot_code, size_t node1_idx, size_t node2_idx, dot_edge_pars_t pars, const char *label) {
     if (dot_code->edge_list_sz >= dot_code->edge_list_cap) {
         debug("edge_list overflow");
-        return 0;
+        return -1;
     }
     dot_code->edge_list[dot_code->edge_list_sz++] =
         {
             &dot_code->node_list[node1_idx],&dot_code->node_list[node2_idx],  pars, label
         };
 
-    return dot_code->edge_list_sz - 1;
+    return (int) (dot_code->edge_list_sz) - 1;
 }
 
 void dot_start_graph(FILE *dot_code_file, dot_code_pars_t *pars) {
