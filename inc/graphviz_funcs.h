@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-const size_t DOT_CODE_LIST_MAX_SZ = 128;
-const size_t STR_STORAGE_CHUNK_SIZE = 128;
+const size_t DOT_CODE_LIST_MAX_SZ = BUFSIZ;
+const size_t STR_STORAGE_CHUNK_SIZE = BUFSIZ;
 const size_t MAX_DOT_DIR_SZ = 128;
 const size_t MAX_DOT_FILE_NAME_SZ = 128;
 const size_t MAX_DOT_IMG_NAME_SZ = 128;
